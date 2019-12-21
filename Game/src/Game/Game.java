@@ -1,11 +1,114 @@
+
 package Game;
 
-public class Game {
+import java.awt.*;
+import java.awt.image.BufferStrategy;
 
-    public static void main(string args[]){
-        
+public class Game extends Canvas implements Runnable {
+
+
+
+    public static final int WIDTH = 640;
+    public static final int HEIGHT = WIDTH / 12 * 9;
+    private Thread thread;
+    private boolean running = false;
+
+    public Game() {
+        new Window(WIDTH, HEIGHT, "Evolution IGF 2020", this);
+    }
+
+    public synchronized void start(){
+
+        thread = new Thread(this);
+        thread.start();
+        running = true;
+    }
+
+    public synchronized void stop(){
+        try{
+            thread.join();
+            running = false;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    double interpolation = 0;
+    final int TICKS_PER_SECOND = 25;
+    final int SKIP_TICKS = 1000 / TICKS_PER_SECOND;
+    final int MAX_FRAMESKIP = 5;
+
+    long desiredFPS = 60;
+    long desiredDeltaLoop = (1000*1000*1000)/desiredFPS;
+
+    private double x = 0;
+
+    protected void update(int deltaTime) {
+        x += deltaTime * 0.2;
+        while (x > 500) {
+            x -= 500;
+        }
     }
 
 
+        public void run(){
+
+        long beginLoopTime;
+        long endLoopTime;
+        long currentUpdateTime = System.nanoTime();
+        long lastUpdateTime;
+        long deltaLoop;
+
+        while(running){
+            beginLoopTime = System.nanoTime();
+
+            render();
+
+            lastUpdateTime = currentUpdateTime;
+            currentUpdateTime = System.nanoTime();
+            update((int) ((currentUpdateTime - lastUpdateTime)/(1000*1000)));
+
+            endLoopTime = System.nanoTime();
+            deltaLoop = endLoopTime - beginLoopTime;
+
+            if(deltaLoop > desiredDeltaLoop){
+                //Do nothing. We are already late.
+            }else{
+                try{
+                    Thread.sleep((desiredDeltaLoop - deltaLoop)/(1000*1000));
+                }catch(InterruptedException e){
+                    //Do nothing
+                }
+            }
+        }
+    }
+
+
+    private void tick() {
+
+    }
+
+    private void render() {
+        BufferStrategy bs = this.getBufferStrategy();
+        if(bs == null){
+            this.createBufferStrategy(3);
+            return;
+        }
+        Graphics g = bs.getDrawGraphics();
+        g.setColor(Color.black);
+        g.fillRect(0, 0, WIDTH, HEIGHT);
+
+        Animal Eve =  new Animal(g);
+        Eve.render(g);
+
+        g.dispose();
+        bs.show();
+        int x = 10;
+
+    }
+
+    public static void main(String args[]){
+        new Game();
+    }
 
 }

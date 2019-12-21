@@ -1,7 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="086322ee-772f-456d-9a22-273604144495" name="Default Changelist" comment="" />
+    <list default="true" id="086322ee-772f-456d-9a22-273604144495" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/src/Game/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/Game/src/Game/Animal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/src/Game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/Game/src/Game/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/src/Game/IMapElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/Game/src/Game/IMapElement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/src/Game/Vector2d.java" beforeDir="false" afterPath="$PROJECT_DIR$/Game/src/Game/Vector2d.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/src/Game/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/Game/src/Game/Window.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/AbstractWorldMap.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Animal.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Genes.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Grass.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GrassField.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/IPositionChangeObserver.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/IWorldMap.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Map.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/MapBoundary.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/MapDirection.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/MapVisualizer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/MoveDirection.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/OptionsParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Plant.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/RectangularMap.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Vector2d.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/World.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/font.scb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/IntegrationTestLab6.java" beforeDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,31 +42,45 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1S76c1AsmCneNBOEm1MXaefSGR5" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="GenerateAntBuildDialog.backupFiles" value="true" />
+    <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
+    <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
+    <property name="GenerateAntBuildDialog.outputFileNameProperty" value="evolutiontesting" />
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../aghLab" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../EvolutionTESTING" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main" />
-      <recent name="$PROJECT_DIR$" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main" />
       <recent name="$PROJECT_DIR$/src" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Game/src/Game" />
+      <recent name="$PROJECT_DIR$/src/main" />
+      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -55,9 +97,11 @@
   </component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="main.World" />
-      <module name="Lab2" />
-      <option name="PROGRAM_PARAMETERS" value="f b r l f f r r f f f f f f f f" />
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="Game.Game" />
+      <module name="Game" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Game/src" />
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
       <method v="2">
@@ -104,5 +148,21 @@
       <updated>1570902362653</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>
