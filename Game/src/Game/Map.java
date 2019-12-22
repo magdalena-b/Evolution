@@ -2,7 +2,6 @@ package Game;
 
 import java.awt.*;
 import java.util.LinkedList;
-import java.util.Random;
 
 public class Map {
 
@@ -32,9 +31,11 @@ public class Map {
             animals.get(i).render(g);
         }
 
+
         for (int i = 0; i < plants.size(); i++) {
             plants.get(i).render(g);
         }
+
 
     }
 
@@ -69,6 +70,8 @@ public class Map {
         int jungleWidth = (int) (width * jungleRatio);
         int jungleHeight = (int) (height * jungleRatio);
 
+        System.out.println("jungle width: " + jungleWidth + ", jungle height: " + jungleHeight);
+
         int center_w = width / 2;
         int center_h = height / 2;
 
@@ -77,46 +80,25 @@ public class Map {
         Vector2d leftUpperJungle = new Vector2d(center_w - jungleWidth/2, center_h + jungleHeight/2);
         Vector2d rightUpperJungle = new Vector2d(center_w + jungleWidth/2, center_h + jungleHeight/2);
 
-        int plantCounter = (jungleHeight * jungleWidth) / 2;
+        System.out.println("left lower: " + leftLowerJungle.toString());
+        System.out.println("right lower: " + rightLowerJungle.toString());
+        System.out.println("left upper: " + leftUpperJungle.toString());
+        System.out.println("right upper: " + rightUpperJungle.toString());
+
+
+        //int plantCounter = (jungleHeight * jungleWidth) / 2;
+        int plantCounter = 100;
 
         while (plantCounter > 0) {
-
             int plantPositionX = (int)(Math.random() * jungleWidth) + leftLowerJungle.x;
             int plantPositionY = (int)(Math.random() * jungleHeight) + rightUpperJungle.y;
             addPlant(new Plant(new Vector2d(plantPositionX, plantPositionY)));
             plantCounter--;
-
-        }
-
-
-
-    }
-
-
-
-    private void generatePlantsInJungle (int n) {
-
-        int sqrt_n = (int)Math.sqrt(n*10);
-        Random generator = new Random();
-
-        for (int i = 0; i < sqrt_n; i++) {
-
-            int x = generator.nextInt(sqrt_n);
-            int y = generator.nextInt(sqrt_n);
-            Vector2d p = new Vector2d(x, y);
-            Plant plant = new Plant(p);
-
-            while (isOccupied(p)) {
-                x = generator.nextInt(sqrt_n);
-                y = generator.nextInt(sqrt_n);
-                p = new Vector2d(x, y);
-            }
-            if(!isOccupied(p)){
-                //this.grassMap.put(p, grass);
-                addPlant(plant);
-            }
         }
 
     }
+
+
+
 
 }
