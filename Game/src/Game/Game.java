@@ -12,9 +12,14 @@ public class Game extends Canvas implements Runnable {
     public static final int HEIGHT = WIDTH / 12 * 9;
     private Thread thread;
     private boolean running = false;
+    private Map map;
 
     public Game() {
         new Window(WIDTH, HEIGHT, "Evolution IGF 2020", this);
+        map = new Map();
+        map.addAnimal(new Animal(new Vector2d(320, 150)));
+        map.addPlant(new Plant(new Vector2d(100, 100)));
+        //handler.add(new Animal());
     }
 
     public synchronized void start(){
@@ -63,6 +68,7 @@ public class Game extends Canvas implements Runnable {
             beginLoopTime = System.nanoTime();
 
             render();
+            tick(WIDTH, HEIGHT);
 
             lastUpdateTime = currentUpdateTime;
             currentUpdateTime = System.nanoTime();
@@ -84,8 +90,8 @@ public class Game extends Canvas implements Runnable {
     }
 
 
-    private void tick() {
-
+    private void tick(int width, int height) {
+        map.tick(width, height);
     }
 
     private void render() {
@@ -94,16 +100,18 @@ public class Game extends Canvas implements Runnable {
             this.createBufferStrategy(3);
             return;
         }
+
+        //bs.getDrawGraphics().
+
         Graphics g = bs.getDrawGraphics();
         g.setColor(Color.black);
         g.fillRect(0, 0, WIDTH, HEIGHT);
 
-        Animal Eve =  new Animal(g);
-        Eve.render(g);
+        map.render(g);
+
 
         g.dispose();
         bs.show();
-        int x = 10;
 
     }
 
