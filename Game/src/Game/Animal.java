@@ -26,16 +26,6 @@ public class Animal {
         this.generateRandomGenes();
     }
 
-    public void tick(int width, int height){
-
-        //this.position.x += velX;
-        //this.position.y += velY;
-
-        this.position.x = (this.position.x + velX) % width;
-        this.position.y = (this.position.y + velY) % height;
-
-    }
-
     public void render(Graphics g) {
         if(!isDead()) {
             g.setColor(this.toColor());

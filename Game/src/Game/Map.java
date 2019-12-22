@@ -27,15 +27,14 @@ public class Map {
     }
 
     public void render(Graphics g) {
+
         for (int i = 0; i < animals.size(); i++) {
             animals.get(i).render(g);
         }
 
-
         for (int i = 0; i < plants.size(); i++) {
             plants.get(i).render(g);
         }
-
 
     }
 
@@ -86,12 +85,11 @@ public class Map {
         System.out.println("right upper: " + rightUpperJungle.toString());
 
 
-        //int plantCounter = (jungleHeight * jungleWidth) / 2;
-        int plantCounter = 100;
+        int plantCounter = jungleWidth / 2;
 
         while (plantCounter > 0) {
             int plantPositionX = (int)(Math.random() * jungleWidth) + leftLowerJungle.x;
-            int plantPositionY = (int)(Math.random() * jungleHeight) + rightUpperJungle.y;
+            int plantPositionY = (int)(Math.random() * jungleHeight) + leftLowerJungle.y;
             addPlant(new Plant(new Vector2d(plantPositionX, plantPositionY)));
             plantCounter--;
         }
