@@ -8,10 +8,16 @@ public class Map {
 
     int width;
     int height;
-    int jungleRatio;
+    double jungleRatio;
 
     LinkedList<Animal> animals = new LinkedList<Animal>();
     LinkedList<Plant> plants = new LinkedList<Plant>();
+
+    public Map(int width, int height, double jungleRatio) {
+        this.width = width;
+        this.height = height;
+        this.jungleRatio = jungleRatio;
+    }
 
     public void tick(int width, int height){
         for (int i = 0; i < animals.size(); i++) {
@@ -59,8 +65,9 @@ public class Map {
     }
 
     public void createJungleAndSahannah(){
-        int jungleWidth = width * jungleRatio;
-        int jungleHeight = height * jungleRatio;
+
+        int jungleWidth = (int) (width * jungleRatio);
+        int jungleHeight = (int) (height * jungleRatio);
 
         int center_w = width / 2;
         int center_h = height / 2;
@@ -69,6 +76,19 @@ public class Map {
         Vector2d rightLowerJungle = new Vector2d(center_w + jungleWidth/2, center_h - jungleHeight/2);
         Vector2d leftUpperJungle = new Vector2d(center_w - jungleWidth/2, center_h + jungleHeight/2);
         Vector2d rightUpperJungle = new Vector2d(center_w + jungleWidth/2, center_h + jungleHeight/2);
+
+        int plantCounter = (jungleHeight * jungleWidth) / 2;
+
+        while (plantCounter > 0) {
+
+            int plantPositionX = (int)(Math.random() * jungleWidth) + leftLowerJungle.x;
+            int plantPositionY = (int)(Math.random() * jungleHeight) + rightUpperJungle.y;
+            addPlant(new Plant(new Vector2d(plantPositionX, plantPositionY)));
+            plantCounter--;
+
+        }
+
+
 
     }
 
@@ -96,10 +116,6 @@ public class Map {
                 addPlant(plant);
             }
         }
-
-    }
-
-    private void generatePlantsInSavannah() {
 
     }
 

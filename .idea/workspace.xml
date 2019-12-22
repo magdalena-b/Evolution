@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="086322ee-772f-456d-9a22-273604144495" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Game/src/Game/Map.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/src/Game/MapDirection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/src/Game/MoveDirection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/src/Game/Plant.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/src/Game/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/Game/src/Game/Animal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/src/Game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/Game/src/Game/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/src/Game/IMapElement.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/src/Game/Vector2d.java" beforeDir="false" afterPath="$PROJECT_DIR$/Game/src/Game/Vector2d.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/src/Game/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/Game/src/Game/Map.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

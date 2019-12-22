@@ -16,10 +16,11 @@ public class Game extends Canvas implements Runnable {
 
     public Game() {
         new Window(WIDTH, HEIGHT, "Evolution IGF 2020", this);
-        map = new Map();
+        double jungleRatio = 0.5;
+        map = new Map(WIDTH, HEIGHT, jungleRatio);
         map.addAnimal(new Animal(new Vector2d(320, 150)));
-        map.addPlant(new Plant(new Vector2d(100, 100)));
-        //handler.add(new Animal());
+        //map.addPlant(new Plant(new Vector2d(100, 100)));
+        map.createJungleAndSahannah();
     }
 
     public synchronized void start(){

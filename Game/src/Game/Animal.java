@@ -37,8 +37,10 @@ public class Animal {
     }
 
     public void render(Graphics g) {
-        g.setColor(this.toColor());
-        g.fillRect(position.x, position.y, 16, 16);
+        if(!isDead()) {
+            g.setColor(this.toColor());
+            g.fillRect(position.x, position.y, 16, 16);
+        }
     }
 
     public void generateRandomGenes(){ // first generation
