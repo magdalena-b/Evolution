@@ -1,7 +1,6 @@
 package Game;
 
 import java.awt.*;
-import java.util.Arrays;
 import java.util.Random;
 
 public class Animal {
@@ -10,15 +9,16 @@ public class Animal {
     public MapDirection direction;
     public int energy;
     public int startEnergy = 1000;
-    int genes[];
     int numberOfGenes = 32;
+    int genes[] = new int[numberOfGenes];
     int genesLength = 7;
     int bornEpoch = -1;
     int deathEpoch = -1;
-    private int velX = 64;
-    private int velY = 64;
+    private int velX = 8;
+    private int velY = 8;
     int animalSize = 16;
-    public int minEnergyToReproduce = startEnergy / 2;
+    public int minEnergyToReproduce = startEnergy * 3 / 4;
+    //public boolean haveParents = false;
 
 
     public Animal(Vector2d position){
@@ -40,9 +40,9 @@ public class Animal {
 
         Random generator = new Random();
 
-        this.genes = new int[numberOfGenes];
+        //this.genes = new int[numberOfGenes];
         int allGenes[] = new int[genesLength]; // wartosci: indeksy pierwszych unikalnych genow
-        Arrays.fill(allGenes, 0, 7, -1);
+        //Arrays.fill(allGenes, 0, 7, -1);
 
         for (int i = 0; i < numberOfGenes; i++) {
             int x = generator.nextInt(genesLength);
@@ -79,7 +79,7 @@ public class Animal {
             x = y;
             y = tmp;
         }
-        genes = new int[numberOfGenes];
+        //genes = new int[numberOfGenes];
         for (int i = 0; i < x; i++) {
             genes[i] = parent1.genes[i];
         }
@@ -100,31 +100,21 @@ public class Animal {
         this.energy = this.energy + x;
     }
 
-    public Animal createLife(Animal parent1, Animal parent2) {
-        int energy = parent1.energy / 4 + parent2.energy / 4;
-        //Animal child = new Animal(energy, generateInheritedGenes(parent1, parent2));
-        parent1.changeEnergy( - parent1.energy / 4);
-        parent2.changeEnergy(- parent2.energy / 4);
-        Animal child =  new Animal(parent1.position);
-        child.generateInheritedGenes(parent1, parent2);
-        return child;
-
-    }
-
     public void move(MoveDirection direction, int width, int height){
-
-        Vector2d oldPosition = this.position;
-        Vector2d newPosition = new Vector2d(0,0);
+        Vector2d newPosition;
+        Vector2d unit = this.direction.toUnitVector();
+        Vector2d displacement = new Vector2d(unit.x * velX, unit.y * velY);
+        //System.out.println(displacement.toString());
 
         switch(direction){
             case FORWARD:
-                newPosition = this.position.add(this.direction.toUnitVector());
+                newPosition = this.position.add(displacement);
                 if(newPosition.y < height && newPosition.y > 0) this.position.y = newPosition.y;
                 if(newPosition.x < width && newPosition.x > 0) this.position.x = newPosition.x;
                 this.energy--;
                 break;
             case BACKWARD:
-                newPosition = this.position.subtract(this.direction.toUnitVector());
+                newPosition = this.position.subtract(displacement);
                 //if(map.canMoveTo(newPosition)) {
                 if(newPosition.y < height && newPosition.y > 0) this.position.y = newPosition.y;
                 if(newPosition.x < width && newPosition.x > 0) this.position.x = newPosition.x;

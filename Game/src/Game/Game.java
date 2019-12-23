@@ -19,6 +19,8 @@ public class Game extends Canvas implements Runnable {
         double jungleRatio = 0.5;
         map = new Map(WIDTH, HEIGHT, jungleRatio);
         map.addAnimal(new Animal(new Vector2d(320, 150)));
+        map.addAnimal(new Animal(new Vector2d(310, 150)));
+        //map.addAnimal(new Animal(new Vector2d(310, 160)));
         //map.addPlant(new Plant(new Vector2d(100, 100)));
         map.createJungleAndSahannah();
     }
@@ -44,7 +46,7 @@ public class Game extends Canvas implements Runnable {
     final int SKIP_TICKS = 1000 / TICKS_PER_SECOND;
     final int MAX_FRAMESKIP = 5;
 
-    long desiredFPS = 60;
+    long desiredFPS = 10;
     long desiredDeltaLoop = (1000*1000*1000)/desiredFPS;
 
     private double x = 0;

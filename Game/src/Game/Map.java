@@ -31,10 +31,13 @@ public class Map {
             animals.get(i).rotate(width, height);
             animals.get(i).move(MoveDirection.BACKWARD, width, height);
             eating(animals.get(i));
+            animalsCollision(animals.get(i));
         }
+        removeDeadAnimals();
     }
 
     public void render(Graphics g) {
+
 
         for (int i = 0; i < animals.size(); i++) {
             animals.get(i).render(g);
@@ -76,9 +79,9 @@ public class Map {
         }
     }
 
-    public boolean isOccupied(Vector2d vector2d){
-        return (animalAt(vector2d) != null);
-    }
+//    public boolean isOccupied(Vector2d vector2d){
+//        return (animalAt(vector2d) != null);
+//    }
 
     /*
     public Object objectAt(Vector2d position){
@@ -92,11 +95,16 @@ public class Map {
     }
      */
 
-    public Animal animalAt(Vector2d position) {
+    public Animal animalAt(Animal animal) {
         for (int i = 0; i < animals.size(); i++) {
-            Vector2d tmp = animals.get(i).position.subtract(position);
-            if ( abs(tmp.x) < animals.get(i).animalSize / 2 &&  abs(tmp.y) < animals.get(i).animalSize / 2 ) {
-                return animals.get(i);
+            Animal other = animals.get(i);
+            if (other.equals(animal)) {
+                continue;
+            }
+            Vector2d tmp = animal.position.subtract(other.position);
+//            if ( abs(tmp.x) != 0 &&  abs(tmp.y) != 0) {
+            if ( abs(tmp.x) < animal.animalSize / 2 &&  abs(tmp.y) < animal.animalSize / 2) {
+                return other;
             }
         }
         return null;
@@ -151,30 +159,41 @@ public class Map {
     }
 
 
-    /*
-    public void eating() {
-
-        System.out.println("food");
-
-        for(Plant food : plantsMap.values()) {
-            if (animalsMap.get(food.position) != null) {
-                ArrayList<Animal> hungryAnimals = animalsMap.get(food.position);
-                for (Animal a : hungryAnimals) {
-                    a.changeEnergy(grassProfit / hungryAnimals.size());
-                    food.wasEaten = true;
-                    System.out.println("brzuszek pełny");
-                }
-            }
-        }
-
-     */
 
     public void eating (Animal animal) {
-        if (plantAt(animal.position) != null) {
+        if (plantAt(animal.position) != null && !(plantAt(animal.position).wasEaten)) {
             Plant food = plantAt(animal.position);
             animal.changeEnergy(grassProfit);
             food.wasEaten = true;
         }
+    }
+
+    public void animalsCollision(Animal animal) {
+        Animal date = animalAt(animal);
+        if (date != null) {
+//            System.out.println(String.format("Animal collision at %s and %s", animal.position.toString(), date.position.toString()));
+            createLife(animal, date);
+        }
+    }
+
+
+    public Animal createLife(Animal parent1, Animal parent2) {
+        if(parent1.energy >= parent1.minEnergyToReproduce && parent2.energy >= parent2.minEnergyToReproduce){
+            int energy = parent1.energy / 4 + parent2.energy / 4;
+            //Animal child = new Animal(energy, generateInheritedGenes(parent1, parent2));
+
+
+            Animal child = new Animal(new Vector2d(parent1.position.x, parent2.position.y));
+            child.generateInheritedGenes(parent1, parent2);
+            child.startEnergy = (parent1.energy / 4) + (parent2.energy / 4);
+            parent1.changeEnergy( - parent1.energy / 4);
+            parent2.changeEnergy(- parent2.energy / 4);
+            System.out.println("Creating child");
+            addAnimal(child);
+            return child;
+        }
+
+        return null;
     }
 
 
