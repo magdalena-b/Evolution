@@ -1,27 +1,58 @@
 
 package Game;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.net.URL;
 
 public class Game extends Canvas implements Runnable {
 
 
 
-    public static final int WIDTH = 640;
-    public static final int HEIGHT = WIDTH / 12 * 9;
+    //public static final int WIDTH = 640;
+    //public static final int HEIGHT = WIDTH / 12 * 9;
+    public static int WIDTH;
+    public static int HEIGHT;
     private Thread thread;
     private boolean running = false;
     private Map map;
 
-    public Game() {
-        new Window(WIDTH, HEIGHT, "Evolution IGF 2020", this);
+    public Game(int locationX, int locationY) {
+
+        JSONObject obj = null;
+        // parsing file "JSONExample.json"
+        try {
+            URL path = Game.class.getResource("parameters.json");
+            File f = new File(path.getFile());
+            obj = (JSONObject) new JSONParser().parse(new FileReader(f));
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        if (obj == null) {
+            throw new RuntimeException("plik json nie znaleziony");
+        }
+        WIDTH = (int) (long) obj.get("WIDTH");
+        HEIGHT = (int) (long) obj.get("HEIGHT");
+
+        double jungleRation = (double) (long) obj.get("WIDTH");
+        int numberOfFirstGeneration = (int) (long) obj.get("numberOfFirstGeneration");
+
+        new Window(WIDTH, HEIGHT, "Evolution IGF 2020", this, locationX, locationY);
         double jungleRatio = 0.5;
         map = new Map(WIDTH, HEIGHT, jungleRatio);
-        map.addAnimal(new Animal(new Vector2d(320, 150)));
-        map.addAnimal(new Animal(new Vector2d(310, 150)));
-        //map.addAnimal(new Animal(new Vector2d(310, 160)));
-        //map.addPlant(new Plant(new Vector2d(100, 100)));
+        for (int i = 0; i < numberOfFirstGeneration; i++) {
+            map.addAnimal(new Animal(map.getRandomLocation()));
+        }
         map.createJungleAndSahannah();
     }
 
@@ -119,7 +150,8 @@ public class Game extends Canvas implements Runnable {
     }
 
     public static void main(String args[]){
-        new Game();
+        new Game(0, 0);
+        new Game(700, 700);
         //new Game();
     }
 

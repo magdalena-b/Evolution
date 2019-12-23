@@ -39,13 +39,14 @@ public class Map {
     public void render(Graphics g) {
 
 
+        for (int i = 0; i < plants.size(); i++) {
+            plants.get(i).render(g);
+        }
+
         for (int i = 0; i < animals.size(); i++) {
             animals.get(i).render(g);
         }
 
-        for (int i = 0; i < plants.size(); i++) {
-            plants.get(i).render(g);
-        }
 
     }
 
@@ -77,6 +78,14 @@ public class Map {
                 animals.remove(i);
             }
         }
+    }
+
+    public Vector2d getRandomLocation() {
+
+        int positionX = (int)(Math.random() * width);
+        int positionY = (int)(Math.random() * height);
+        return new Vector2d(positionX, positionY);
+
     }
 
 //    public boolean isOccupied(Vector2d vector2d){

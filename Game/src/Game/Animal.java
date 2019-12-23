@@ -12,20 +12,16 @@ public class Animal {
     int numberOfGenes = 32;
     int genes[] = new int[numberOfGenes];
     int genesLength = 7;
-    int bornEpoch = -1;
-    int deathEpoch = -1;
     private int velX = 8;
     private int velY = 8;
     int animalSize = 16;
     public int minEnergyToReproduce = startEnergy * 3 / 4;
-    //public boolean haveParents = false;
 
 
     public Animal(Vector2d position){
         this.position = position;
         this.direction = MapDirection.NORTH;
         this.energy = this.startEnergy;
-
         this.generateRandomGenes();
     }
 
@@ -42,7 +38,6 @@ public class Animal {
 
         //this.genes = new int[numberOfGenes];
         int allGenes[] = new int[genesLength]; // wartosci: indeksy pierwszych unikalnych genow
-        //Arrays.fill(allGenes, 0, 7, -1);
 
         for (int i = 0; i < numberOfGenes; i++) {
             int x = generator.nextInt(genesLength);
@@ -79,7 +74,7 @@ public class Animal {
             x = y;
             y = tmp;
         }
-        //genes = new int[numberOfGenes];
+
         for (int i = 0; i < x; i++) {
             genes[i] = parent1.genes[i];
         }
