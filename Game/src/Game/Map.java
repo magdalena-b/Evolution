@@ -4,11 +4,14 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static java.lang.Math.abs;
+
 public class Map {
 
     int width;
     int height;
     double jungleRatio;
+    int grassProfit = 10;
 
     public ArrayList<Animal> animals = new ArrayList<Animal>();
     public ArrayList<Plant> plants = new ArrayList<Plant>();
@@ -27,6 +30,7 @@ public class Map {
         for (int i = 0; i < animals.size(); i++) {
             animals.get(i).rotate(width, height);
             animals.get(i).move(MoveDirection.BACKWARD, width, height);
+            eating(animals.get(i));
         }
     }
 
@@ -73,18 +77,41 @@ public class Map {
     }
 
     public boolean isOccupied(Vector2d vector2d){
-        return (objectAt(vector2d) != null);
+        return (animalAt(vector2d) != null);
     }
 
+    /*
     public Object objectAt(Vector2d position){
         for (int i = 0; i < animals.size(); i++) {
-            if (animals.get(i).position.equals(position)){
+            if (animals.get(i).position.equals(position)){ // wykorzystac funkcje Vector2d zeby zakres
                 return animals.get(i);
             }
         }
         return null;
         // return animalMap.get(position);
     }
+     */
+
+    public Animal animalAt(Vector2d position) {
+        for (int i = 0; i < animals.size(); i++) {
+            Vector2d tmp = animals.get(i).position.subtract(position);
+            if ( abs(tmp.x) < animals.get(i).animalSize / 2 &&  abs(tmp.y) < animals.get(i).animalSize / 2 ) {
+                return animals.get(i);
+            }
+        }
+        return null;
+    }
+
+    public Plant plantAt(Vector2d position) {
+        for (int i = 0; i < plants.size(); i++) {
+            Vector2d tmp = plants.get(i).position.subtract(position);
+            if ( abs(tmp.x) < plants.get(i).plantSize / 2 &&  abs(tmp.y) < plants.get(i).plantSize / 2 ) {
+                return plants.get(i);
+            }
+        }
+        return null;
+    }
+
 
     public void createJungleAndSahannah(){
 
@@ -127,16 +154,28 @@ public class Map {
     /*
     public void eating() {
 
-        ArrayList<Plant> toRemoveAfterEating = new ArrayList<>();
+        System.out.println("food");
 
         for(Plant food : plantsMap.values()) {
-            ArrayList<Animal> animals = animalsMap.get(food.position);
-            //animalMaybeEat.add(animalsMap.get(food.position));
-
+            if (animalsMap.get(food.position) != null) {
+                ArrayList<Animal> hungryAnimals = animalsMap.get(food.position);
+                for (Animal a : hungryAnimals) {
+                    a.changeEnergy(grassProfit / hungryAnimals.size());
+                    food.wasEaten = true;
+                    System.out.println("brzuszek pełny");
+                }
+            }
         }
 
-    }
      */
+
+    public void eating (Animal animal) {
+        if (plantAt(animal.position) != null) {
+            Plant food = plantAt(animal.position);
+            animal.changeEnergy(grassProfit);
+            food.wasEaten = true;
+        }
+    }
 
 
 

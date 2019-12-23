@@ -15,8 +15,9 @@ public class Animal {
     int genesLength = 7;
     int bornEpoch = -1;
     int deathEpoch = -1;
-    int velX = 64;
-    int velY = 64;
+    private int velX = 64;
+    private int velY = 64;
+    int animalSize = 16;
     public int minEnergyToReproduce = startEnergy / 2;
 
 
@@ -31,7 +32,7 @@ public class Animal {
     public void render(Graphics g) {
         if(!isDead()) {
             g.setColor(this.toColor());
-            g.fillRect(position.x, position.y, 16, 16);
+            g.fillRect(position.x, position.y, animalSize, animalSize);
         }
     }
 
