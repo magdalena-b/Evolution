@@ -7,10 +7,9 @@ import org.json.simple.parser.ParseException;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.net.URL;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class Game extends Canvas implements Runnable {
 
@@ -25,9 +24,8 @@ public class Game extends Canvas implements Runnable {
         JSONObject obj = null;
         // parsing file "JSONExample.json"
         try {
-            URL path = Game.class.getResource("parameters.json");
-            File f = new File(path.getFile());
-            obj = (JSONObject) new JSONParser().parse(new FileReader(f));
+            InputStream path = Game.class.getResourceAsStream("parameters.json");
+            obj = (JSONObject) new JSONParser().parse(new InputStreamReader(path));
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParseException e) {
