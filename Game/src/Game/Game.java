@@ -14,10 +14,6 @@ import java.net.URL;
 
 public class Game extends Canvas implements Runnable {
 
-
-
-    //public static final int WIDTH = 640;
-    //public static final int HEIGHT = WIDTH / 12 * 9;
     public static int WIDTH;
     public static int HEIGHT;
     private Thread thread;
@@ -89,7 +85,7 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
-
+        // Kod do ustawiania frame rate z http://www.java-gaming.org/topics/basic-game/21919/view.html
         public void run(){
 
         long beginLoopTime;
@@ -152,7 +148,6 @@ public class Game extends Canvas implements Runnable {
     public static void main(String args[]){
         new Game(0, 0);
         new Game(700, 700);
-        //new Game();
     }
 
 }

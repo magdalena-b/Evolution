@@ -3,6 +3,7 @@
     <output-path>$PROJECT_DIR$/out/artifacts/Game_jar</output-path>
     <root id="archive" name="Game.jar">
       <element id="module-output" name="Game" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/json-simple-1.1.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

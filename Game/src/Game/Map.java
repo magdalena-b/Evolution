@@ -88,21 +88,6 @@ public class Map {
 
     }
 
-//    public boolean isOccupied(Vector2d vector2d){
-//        return (animalAt(vector2d) != null);
-//    }
-
-    /*
-    public Object objectAt(Vector2d position){
-        for (int i = 0; i < animals.size(); i++) {
-            if (animals.get(i).position.equals(position)){ // wykorzystac funkcje Vector2d zeby zakres
-                return animals.get(i);
-            }
-        }
-        return null;
-        // return animalMap.get(position);
-    }
-     */
 
     public Animal animalAt(Animal animal) {
         for (int i = 0; i < animals.size(); i++) {
@@ -111,7 +96,6 @@ public class Map {
                 continue;
             }
             Vector2d tmp = animal.position.subtract(other.position);
-//            if ( abs(tmp.x) != 0 &&  abs(tmp.y) != 0) {
             if ( abs(tmp.x) < animal.animalSize / 2 &&  abs(tmp.y) < animal.animalSize / 2) {
                 return other;
             }
@@ -180,7 +164,6 @@ public class Map {
     public void animalsCollision(Animal animal) {
         Animal date = animalAt(animal);
         if (date != null) {
-//            System.out.println(String.format("Animal collision at %s and %s", animal.position.toString(), date.position.toString()));
             createLife(animal, date);
         }
     }
@@ -189,9 +172,6 @@ public class Map {
     public Animal createLife(Animal parent1, Animal parent2) {
         if(parent1.energy >= parent1.minEnergyToReproduce && parent2.energy >= parent2.minEnergyToReproduce){
             int energy = parent1.energy / 4 + parent2.energy / 4;
-            //Animal child = new Animal(energy, generateInheritedGenes(parent1, parent2));
-
-
             Animal child = new Animal(new Vector2d(parent1.position.x, parent2.position.y));
             child.generateInheritedGenes(parent1, parent2);
             child.startEnergy = (parent1.energy / 4) + (parent2.energy / 4);
