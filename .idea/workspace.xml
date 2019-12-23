@@ -4,7 +4,9 @@
     <list default="true" id="086322ee-772f-456d-9a22-273604144495" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/src/Game/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/Game/src/Game/Animal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/src/Game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/Game/src/Game/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/src/Game/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/Game/src/Game/Map.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/src/Game/Plant.java" beforeDir="false" afterPath="$PROJECT_DIR$/Game/src/Game/Plant.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,7 +43,7 @@
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Evolution" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/iet/java/EvolutionSimulator-master" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />

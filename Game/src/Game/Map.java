@@ -1,7 +1,8 @@
 package Game;
 
 import java.awt.*;
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Map {
 
@@ -9,8 +10,12 @@ public class Map {
     int height;
     double jungleRatio;
 
-    LinkedList<Animal> animals = new LinkedList<Animal>();
-    LinkedList<Plant> plants = new LinkedList<Plant>();
+    public ArrayList<Animal> animals = new ArrayList<Animal>();
+    public ArrayList<Plant> plants = new ArrayList<Plant>();
+    public HashMap<Vector2d, ArrayList<Animal>> animalsMap = new HashMap<>();
+    public HashMap<Vector2d, Plant> plantsMap = new HashMap<>();
+
+
 
     public Map(int width, int height, double jungleRatio) {
         this.width = width;
@@ -20,7 +25,6 @@ public class Map {
 
     public void tick(int width, int height){
         for (int i = 0; i < animals.size(); i++) {
-            //animals.get(i).tick(width, height);
             animals.get(i).rotate(width, height);
             animals.get(i).move(MoveDirection.BACKWARD, width, height);
         }
@@ -39,37 +43,66 @@ public class Map {
     }
 
     public void addAnimal(Animal animal) {
+
         animals.add(animal);
+        if(animalsMap.get(animal.position) == null){
+            ArrayList<Animal> tmp = new ArrayList<Animal>();
+            tmp.add(animal);
+            animalsMap.put(animal.position, tmp);
+        }
+        else{
+            ArrayList<Animal> list = animalsMap.get(animal.position);
+            list.add(animal);
+        }
+
     }
 
     public void addPlant(Plant plant) {
+
         plants.add(plant);
+        plantsMap.put(plant.position, plant);
+    }
+
+    public void removeDeadAnimals() {
+        for (int i = 0; i < animals.size(); i++) {
+            if(animals.get(i).isDead()) {
+                animalsMap.remove(animals.get(i).position);
+                animals.remove(i);
+            }
+        }
     }
 
     public boolean isOccupied(Vector2d vector2d){
-
         return (objectAt(vector2d) != null);
     }
 
     public Object objectAt(Vector2d position){
-
         for (int i = 0; i < animals.size(); i++) {
             if (animals.get(i).position.equals(position)){
                 return animals.get(i);
             }
         }
-
         return null;
-
         // return animalMap.get(position);
     }
 
     public void createJungleAndSahannah(){
 
+        int plantPositionX = 0;
+        int plantPositionY = 0;
+
+        int plantCounter = width / 10;
+
+        while(plantCounter > 0) {
+            plantPositionX = (int)(Math.random() * width);
+            plantPositionY = (int)(Math.random() * height);
+            addPlant(new Plant(new Vector2d(plantPositionX, plantPositionY)));
+            plantCounter--;
+        }
+
+
         int jungleWidth = (int) (width * jungleRatio);
         int jungleHeight = (int) (height * jungleRatio);
-
-        System.out.println("jungle width: " + jungleWidth + ", jungle height: " + jungleHeight);
 
         int center_w = width / 2;
         int center_h = height / 2;
@@ -79,23 +112,31 @@ public class Map {
         Vector2d leftUpperJungle = new Vector2d(center_w - jungleWidth/2, center_h + jungleHeight/2);
         Vector2d rightUpperJungle = new Vector2d(center_w + jungleWidth/2, center_h + jungleHeight/2);
 
-        System.out.println("left lower: " + leftLowerJungle.toString());
-        System.out.println("right lower: " + rightLowerJungle.toString());
-        System.out.println("left upper: " + leftUpperJungle.toString());
-        System.out.println("right upper: " + rightUpperJungle.toString());
+        int plantCounterJungle = jungleWidth / 2;
 
-
-        int plantCounter = jungleWidth / 2;
-
-        while (plantCounter > 0) {
-            int plantPositionX = (int)(Math.random() * jungleWidth) + leftLowerJungle.x;
-            int plantPositionY = (int)(Math.random() * jungleHeight) + leftLowerJungle.y;
+        while (plantCounterJungle > 0) {
+            plantPositionX = (int)(Math.random() * jungleWidth) + leftLowerJungle.x;
+            plantPositionY = (int)(Math.random() * jungleHeight) + leftLowerJungle.y;
             addPlant(new Plant(new Vector2d(plantPositionX, plantPositionY)));
-            plantCounter--;
+            plantCounterJungle--;
         }
 
     }
 
+
+    /*
+    public void eating() {
+
+        ArrayList<Plant> toRemoveAfterEating = new ArrayList<>();
+
+        for(Plant food : plantsMap.values()) {
+            ArrayList<Animal> animals = animalsMap.get(food.position);
+            //animalMaybeEat.add(animalsMap.get(food.position));
+
+        }
+
+    }
+     */
 
 
 

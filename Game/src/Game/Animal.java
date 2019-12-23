@@ -8,8 +8,8 @@ public class Animal {
 
     public Vector2d position;
     public MapDirection direction;
-    public int energy = 150;
-    public int startEnergy = 10;
+    public int energy;
+    public int startEnergy = 1000;
     int genes[];
     int numberOfGenes = 32;
     int genesLength = 7;
@@ -17,11 +17,13 @@ public class Animal {
     int deathEpoch = -1;
     int velX = 64;
     int velY = 64;
+    public int minEnergyToReproduce = startEnergy / 2;
 
 
     public Animal(Vector2d position){
         this.position = position;
         this.direction = MapDirection.NORTH;
+        this.energy = this.startEnergy;
 
         this.generateRandomGenes();
     }
