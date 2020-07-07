@@ -12,3 +12,6 @@ Aby uruchomić skompilowany plik .jar, należy przejść do folderu w którym zn
 ```
 java -jar Game.jar
 ```
+
+
+<img src="evolution.png">
