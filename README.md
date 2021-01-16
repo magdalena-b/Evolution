@@ -1,5 +1,5 @@
 
-Opis projektu: https://github.com/apohllo/obiektowe-lab/tree/master/lab8
+Opis projektu: https://github.com/majcher13/obiektowe-lab/tree/master/lab8
 
 
 Program należy otworzyć w IntelliJ (Game.iml) i uruchomić.
